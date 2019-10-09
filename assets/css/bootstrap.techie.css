@@ -5,7 +5,12 @@
     Author URL: https://bootstrapmade.com
 */
 
+.border{
 
+  border-style: solid;
+  border-color: #009688;
+  
+}
 .pure-js-carousel { overflow: hidden; }
 
 .pure-js-carousel-list:before, .pure-js-carousel-list:after {

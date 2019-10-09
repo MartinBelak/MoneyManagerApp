@@ -8,21 +8,32 @@ var months = JSON.parse(localStorage.getItem('StoredMonths'));
 months.forEach(DisplayMonths);
 
 function DisplayMonths(item){
- document.getElementById("AllMonths").innerHTML += item.name +"<br>"+ "income:"+ item.income + "<br>"+"outcome:"+item.outcome;
+//  document.getElementById("AllMonths").innerHTML += item.name +"<br>"+ "income:"+ item.income + "<br>"+"outcome:"+item.outcome;
+document.getElementById("AllMonths").innerHTML += "";
 }
     
     
 
 
-// var Months =[];
+//  var Months =[];
 
 // var month = {
+//     id:1,
 //     name:"Oktober",
 //     income:0,
-//     outcome:500
+//     outcome:500,
+//     isSelected:false
 // }
 
-// Months.push(month);
+// var month2 = {
+//     id:2,
+//     name:"December",
+//     income:0,
+//     outcome:500,
+//     isSelected:false
+// }
+
+// Months.push(month,month2);
 
 // localStorage.setItem('StoredMonths',JSON.stringify(Months));
 
