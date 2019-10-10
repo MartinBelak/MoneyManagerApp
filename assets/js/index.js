@@ -3,16 +3,43 @@
  
   
 function Overview(){
-
+// window.onload(DisplayMonths)
 var months = JSON.parse(localStorage.getItem('StoredMonths'));
+console.log(months);
+
+
 months.forEach(DisplayMonths);
 
-function DisplayMonths(item){
-//  document.getElementById("AllMonths").innerHTML += item.name +"<br>"+ "income:"+ item.income + "<br>"+"outcome:"+item.outcome;
-document.getElementById("AllMonths").innerHTML += "";
+
+
+
+var globalId;
+function DisplayMonths(item){ 
+     
+var newElement = document.createElement('div');
+newElement.innerHTML = '<div class="col-sm-1   text-center id="22"  "><div class="border">'+item.name+'<br> Income:'+item.income+'<br> Outcome:'+item.outcome+'<br><input type="button" id='+item.id+'  value="Select Month" " /> </div></div>';
+newElement.onclick= function(){
+    globalId= item.id
+    console.log(globalId);
+    months.forEach(Compare)
+}, 
+
+document.getElementById("AllMonths").appendChild(newElement);
+
 }
+   
+
     
-    
+function Compare(month){
+    console.log("month id is :"+month.id);
+    console.log("id of element is "+globalId)
+    if (month.id==globalId) {
+        console.log(month);
+        var SelectedMonth = month;
+        localStorage.setItem('SelectedMonth',JSON.stringify(SelectedMonth));
+    }
+}
+
 
 
 //  var Months =[];
@@ -43,13 +70,11 @@ document.getElementById("AllMonths").innerHTML += "";
 
 function MainIndex(){
 
+var SelectedMonth = JSON.parse(localStorage.getItem('SelectedMonth'));
+console.log(SelectedMonth);
 
-var Months = JSON.parse(localStorage.getItem('StoredMonths'));
-
-var lastMonth = Months.length;
-
-var income = Months[lastMonth-1].income;
-var outcome = Months[lastMonth-1].outcome
+var income = SelectedMonth.income;
+var outcome = SelectedMonth.outcome
 var balance = income - outcome;
 
 
@@ -58,16 +83,16 @@ window.onload = GetIncome(),GetOutcome(),GetBalance(),GetMonthName();
 
 
 function GetMonthName(){
-    document.getElementById("month").append(Months[lastMonth-1].name);
+    document.getElementById("month").append(SelectedMonth.name);
 }
 
 function GetIncome() {
     
-    document.getElementById("green").append(Months[lastMonth-1].income);
+    document.getElementById("green").append(income);
 }
 function GetOutcome() {
    
-    document.getElementById("red").append(Months[lastMonth-1].outcome);
+    document.getElementById("red").append(outcome);
 }
 function GetBalance() {
     document.getElementById("balance").append(balance);
