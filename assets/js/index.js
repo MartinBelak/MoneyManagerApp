@@ -49,17 +49,32 @@ var globalId;
 function DisplayMonths(item){ 
      
 var newElement = document.createElement('div');
-newElement.innerHTML = '<div class="col-sm-3   text-center id="22"  "><div class="border">'+item.name+'<br> Income:'+item.income+'<br> Outcome:'+item.outcome+'<br><input type="button" id='+item.id+'  value="Select Month" " /> </div></div>';
+newElement.innerHTML = '<div class="col-sm-3   text-center id="22"  "><div class="border">'+item.name+'<br> Income:'+item.income+'<br> Outcome:'+item.outcome+'<br><input type="button" id='+item.id+'  value="Select Month" " /> <input type="button" id='+item.name+'  value="Remove Month" " /> </div></div>';
 document.getElementById("AllMonths").appendChild(newElement);
 document.getElementById(item.id).onclick= function(){
     globalId= item.id
     console.log(globalId);
     months.forEach(Compare)
 };
+document.getElementById(item.name).onclick= function(){
+    globalId= item.name
+    console.log(globalId);
+    months.forEach(Remove)
+};
 
 }
    
-
+function Remove(month){
+    console.log("month name is :"+month.name);
+    console.log("id of element is "+globalId)
+    if (month.name==globalId) {
+        console.log(month);
+        var index =months.indexOf(month);
+        months.splice(index);
+        localStorage.setItem('StoredMonths',JSON.stringify(months));
+        
+    }
+}
     
 function Compare(month){
     console.log("month id is :"+month.id);
@@ -75,7 +90,7 @@ function Compare(month){
 
 
 
-  //var Months =[];
+//    var Months =[];
 
 
 
@@ -89,7 +104,7 @@ function Compare(month){
 
 // Months.push(month,month2);
 
-// localStorage.setItem('StoredMonths',JSON.stringify(Months));
+//  localStorage.setItem('StoredMonths',JSON.stringify(Months));
 
 }
 
