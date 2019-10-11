@@ -59,8 +59,10 @@
        <h3> Select Month </h3>
        <div id="AllMonths">
          
-          <!-- <div class="col-sm-1   text-center  "><div class="border">Month Name <br> Income:12000<br> Outcome:8000<br> <button onclick="SelectMonth()" id="item.id">select month</button></div></div>    -->
- 
+           <!-- <div class="col-sm-2   text-center  "><div class="border">Month Name <br> Income:12000<br> Outcome:8000<br> <button onclick="SelectMonth()" id="item.id">select month</button></div></div> 
+           <div class="col-sm-2   text-center  "><div class="border">Month Name <br> Income:12000<br> Outcome:8000<br> <button onclick="SelectMonth()" id="item.id">select month</button></div></div>
+           <div class="col-sm-2   text-center  "><div class="border">Month Name <br> Income:12000<br> Outcome:8000<br> <button onclick="SelectMonth()" id="item.id">select month</button></div></div>
+           <div class="col-sm-2   text-center  "><div class="border">Month Name <br> Income:12000<br> Outcome:8000<br> <button onclick="SelectMonth()" id="item.id">select month</button></div></div> -->
        </div>
   </div>
   </div>
@@ -72,10 +74,17 @@
   <br>
   <br>
 
-  <div class="col-sm-12 col-lg-12">
-    <div class="col-md-4"><h2>+ Add Month</h2></div>
-    <div class="col-md-4"><input></div>
+<div class="container">
+  
+      <div class="row">
+  
+    
+    <div class="col-sm-4 col-lg-4">Month Name<br><input id="Name"></div>
+    <div class="col-sm-4 col-lg-4">Income<br><input id="Income" type="number"></div>
+    <div class="col-sm-4 col-lg-4" ><br><button onclick="AddMonth()">AddMonth</button></div>
   </div>
+</div>
+
     
 
    
