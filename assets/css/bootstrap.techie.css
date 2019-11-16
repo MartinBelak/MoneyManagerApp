@@ -5,6 +5,15 @@
     Author URL: https://bootstrapmade.com
 */
 
+.space{
+  display: inline-flex;
+}
+.bold{
+  color: black;
+    font-family: monospace;
+    
+}
+
 .border{
  margin:5px;
   border-style: solid;

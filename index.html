@@ -90,32 +90,29 @@
 
         <h2>Expenses</h2>
 
-        <table class="table table-bordered table-striped">
+        <table class="table table-bordered table-striped bold">
                    
-          <tbody>
+          <tbody id="expenses">
 
-            <tr>
+            <!-- <tr>
+              <td> <div class="bold">picture of category  <p class="space"> sum</p></div></td>                            
+            </tr> -->
+            <!-- <tr>
               <td>picture of category , sum</td>                            
             </tr>
-            <tr>
-              <td>picture of category , sum</td>                            
-            </tr>
-            
+             -->
           </tbody>
         </table>
 
-        
-        <input>
-        <div class="btn-group">
-            <button class="btn btn-sm btn-default">Choose Category</button>
-            <button class="btn btn-sm dropdown-toggle btn-default" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
-            <ul class="dropdown-menu">
 
-              <li><a href="#">Action</a></li>
-              
-            </ul>
+        <h3>type amount  choose category</h2>
+        <input id="amount"  type="number">
+        <div class="btn-group">
+          <select id="select" class="bold">
+            <!-- <option value="volvo">Food</option> -->
+          </select>           
           </div>
-          <button> Add expense</button>
+          <button class="bold" onclick="AddCategory()"> Add expense</button>
 
       </div>
     </div>

@@ -14,10 +14,15 @@
             name:Name,
             income:Income,
             outcome:0,
+            expenses:{
+                "food":200,
+                "rent":400
+            }
         }
         var months =[]
         months.push(month);
         localStorage.setItem('StoredMonths',JSON.stringify(months));
+        location.reload();
     }
     else{
     var month={
@@ -25,12 +30,20 @@
               name:Name,
               income:Income,
               outcome:0,
+              expenses:{ 
+                  "food":200,
+                  "rent":400
 
-                }
+                        }
+
+              };
           months.push(month);
           localStorage.setItem('StoredMonths',JSON.stringify(months));
+          location.reload();
     }
 }
+
+
   
 function Overview(){
 // window.onload(DisplayMonths)
@@ -70,9 +83,9 @@ function Remove(month){
     if (month.name==globalId) {
         console.log(month);
         var index =months.indexOf(month);
-        months.splice(index);
+        months.splice(index,1);
         localStorage.setItem('StoredMonths',JSON.stringify(months));
-        
+        location.reload();
     }
 }
     
@@ -108,6 +121,19 @@ function Compare(month){
 
 }
 
+function AddCategory(){
+    var selectedEl = document.getElementById("select");
+    var CatName = selectedEl.options[selectedEl.selectedIndex].text;
+   
+    var amount= document.getElementById("amount").value;
+
+    var SelectedMonth = JSON.parse(localStorage.getItem('SelectedMonth'));
+
+    SelectedMonth.expenses[CatName] = amount;
+    localStorage.setItem('SelectedMonth',JSON.stringify(SelectedMonth));
+    location.reload();
+
+}
 
 
 function MainIndex(){
@@ -121,7 +147,7 @@ var balance = income - outcome;
 
 
 
-window.onload = GetIncome(),GetOutcome(),GetBalance(),GetMonthName();
+window.onload = GetIncome(),GetBalance(),GetMonthName(),ShowExpenses(),PopulateExpensesDropDown();
 
 
 function GetMonthName(){
@@ -132,11 +158,61 @@ function GetIncome() {
     
     document.getElementById("green").append(income);
 }
+
+
+
+
 function GetOutcome() {
-   
-    document.getElementById("red").append(outcome);
+   var expenses = SelectedMonth.expenses;
+   var total = 0;
+   for (var key in expenses){
+       var text = expenses[key]     
+       num = parseInt(text,10);
+       total= total + num;           
+   }
+  
+    document.getElementById("red").append(total);
+    return (total)
 }
+
 function GetBalance() {
-    document.getElementById("balance").append(balance);
+    document.getElementById("balance").append(income-GetOutcome());
 }
+
+function ShowExpenses(){
+
+    var expenses = SelectedMonth.expenses;
+    var total = 0;
+    for (var key in expenses){
+
+     var newElement = document.createElement('tr');
+     newElement.innerHTML = '<td> ' + key + ': ' +expenses[key] + ' </td>';
+     document.getElementById("expenses").append(newElement)
+
+              
+    }
+
+
+    
+}
+
+
+function PopulateExpensesDropDown(){
+    var select = document.getElementById('select');
+    var options =[];
+    var expenses = SelectedMonth.expenses;
+    for (var key in expenses){
+        options.push(key)
+    }
+    
+    for (var i =0; i<options.length; i++){
+        var opt = options[i];
+        var el = document.createElement("option");
+        el.textContent=opt;
+        el.value=opt;
+        select.appendChild(el);
+    }
+}
+
+
 }
