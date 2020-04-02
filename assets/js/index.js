@@ -75,44 +75,35 @@ function Delete(MonthId){
         localStorage.setItem('SelectedMonth',null);                       
     }
             
-localStorage.setItem('StoredMonths',JSON.stringify(months));         
-location.reload();     
+    localStorage.setItem('StoredMonths',JSON.stringify(months));         
+    location.reload();     
 }
 
 function Overview() {
-     // window.onload(DisplayMonths)
     var months = JSON.parse(localStorage.getItem('StoredMonths'));
     var SelectedMonth = JSON.parse(localStorage.getItem('SelectedMonth'));
+    var TotalBalance = 0;
+
     console.log(months);
-
-
-
-
-
-
-    
     months.forEach(DisplayMonths);
+    GetTotalBalance();
 
-
-
-
-    var globalId;
     function DisplayMonths(item){ 
-     
-    var newElement = document.createElement('div');
-    newElement.innerHTML = '<div class="col-sm-3   text-center id="22"  "><div class="border">'+item.name+'<br> Income:'+item.income+'<br> Outcome:'+item.outcome+'<br><input type="button" onclick="Select('+item.id+')" id='+item.id+'  value="Select Month" " /> <input type="button" onclick="Delete('+item.id+')" id='+item.name+'  value="Remove Month" " /> </div></div>';
-    document.getElementById("AllMonths").appendChild(newElement);
-    // document.getElementById(item.id).onclick= function(){
-    // globalId= item.id
-    // console.log(globalId);
-    // months.forEach(Compare)};
-
-    // document.getElementById(item.name).onclick= function(){
-    // globalId= item.name
-    // console.log(globalId);
-    // months.forEach(Remove)}
-}
-     
+        var Income = item.income;
+        var Outcome = item.outcome;
+        var Balance = Income-Outcome;
+        TotalBalance+= Balance;
+        var newElement = document.createElement('div');
+        newElement.className='col-sm-3   text-center ';
+        newElement.innerHTML = '<div class="border"> <div>'+item.name+'</div> <div> Income:'+Income+'</div> <div> Outcome:'+Outcome+'</div> <div id=balance> Balance: '+Balance+'</div>  <input type="button" onclick="Select('+item.id+')" id='+item.id+'  value="Select Month" " /> <input type="button" onclick="Delete('+item.id+')" id='+item.name+'  value="Remove Month" " /> </div>';
+        document.getElementById("AllMonths").appendChild(newElement);
+    
+    }
+    
+    function GetTotalBalance(){
+        document.getElementById("TotalBalance").append(TotalBalance);
+        console.log(TotalBalance);
+    }
 
 }
 
@@ -126,20 +117,25 @@ function AddExpense(){
     var NewTotalExpenesAmount = +OriginalAmount + +amount; 
 
     SelectedMonth.expenses[CatName] =  NewTotalExpenesAmount;
+    var total =0;
+    for (var key in SelectedMonth.expenses){
+        var text = SelectedMonth.expenses[key]     
+        num = parseInt(text,10);
+        total= total + num;           
+    }   
+    console.log(total);
+    SelectedMonth.outcome=total;
+
     localStorage.setItem('SelectedMonth',JSON.stringify(SelectedMonth));
    
     var index = FindIndexById(months,SelectedMonth.id)      
     months[index] = SelectedMonth;
-    months[index].outcome = NewTotalExpenesAmount;
-        
     
+           
     localStorage.setItem('StoredMonths',JSON.stringify(months));
-    
-    
+       
     console.log(months)
-    location.reload();
-    
-
+    location.reload();   
 }
 
 function MainIndex(){
@@ -156,7 +152,7 @@ function MainIndex(){
 
 
 
-    window.onload = GetIncome(),GetBalance(),GetMonthName(),ShowExpenses(),PopulateExpensesDropDown();
+    window.onload = GetIncome(),GetOutcome(), GetBalance(),GetMonthName(),ShowExpenses(),PopulateExpensesDropDown();
 
 
     function GetMonthName(){
@@ -172,20 +168,20 @@ function MainIndex(){
 
 
     function GetOutcome() {
-    var expenses = SelectedMonth.expenses;
-    var total = 0;
-    for (var key in expenses){
-        var text = expenses[key]     
-        num = parseInt(text,10);
-        total= total + num;           
-    }
+        var expenses = SelectedMonth.expenses;
+        var total = 0;
+        for (var key in expenses){
+            var text = expenses[key]     
+            num = parseInt(text,10);
+            total= total + num;           
+        }   
     
         document.getElementById("red").append(total);
         return (total)
     }
 
     function GetBalance() {
-        document.getElementById("balance").append(income-GetOutcome());
+        document.getElementById("balance").append(balance);
     }
 
     function ShowExpenses(){
@@ -224,7 +220,22 @@ function MainIndex(){
 }
 
 function AddNewExpenseCategory(){
-    var NewCategory = document.getElementById('NewCategory').value;
+    var months = JSON.parse(localStorage.getItem('StoredMonths'));
+    var SelectedMonth = JSON.parse(localStorage.getItem('SelectedMonth'));
+    var NewCategoryName = document.getElementById('NewCategory').value;
+    var OldExpenes = SelectedMonth.expenses;
+
+   
+    SelectedMonth.expenses[NewCategoryName]=0;
+    
+    localStorage.setItem('SelectedMonth',JSON.stringify(SelectedMonth));
+
+    var index = FindIndexById(months,SelectedMonth.id)
+    months[index] = SelectedMonth
+    localStorage.setItem('StoredMonths',JSON.stringify(months));
+    console.log(SelectedMonth.expenses);
+    location.reload();
+   
     
 }
 
@@ -240,7 +251,7 @@ function PopulateLocalStorage(){
         id:1,
         name:"November",
         income:3000,
-        outcome:500,      
+        outcome:600,      
         expenses:{
             "food":200, 
             "rent":400
@@ -251,7 +262,7 @@ function PopulateLocalStorage(){
         id:2,
         name:"December",
         income:2000,
-        outcome:500,
+        outcome:400,
        
         expenses:{
             "food":0,
