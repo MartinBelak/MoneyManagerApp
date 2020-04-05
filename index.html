@@ -28,40 +28,38 @@
   <!-- Docs Custom styles -->
   
 
-  <div class="col-sm-12 col-lg-12">
-      
 
-
-      <nav class="navbar navbar-inverse" role="navigation">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-         
-          <a class="navbar-brand" href="index.html">Home</a>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse navbar-ex2-collapse">
-          <ul class="nav navbar-nav">
-            <li ><a href="Overview.html">Monthly Overview</a></li>
-            <li><a href="#">Categories</a></li>
-                                        
-          </ul>
-         <button onclick="PopulateLocalStorage()">Create Test Months</button>
-         <button onclick="ClearLocalStorage()">Delete All Months</button>
-        </div>
-        <!-- /.navbar-collapse -->
-      </nav>
-
-    </div>
   
 </head>
 
 <body onload="MainIndex()" >
 
-  <div class="container">
+  <div class="col-sm-12 col-lg-12">
+      
+    <nav class="navbar navbar-inverse" role="navigation">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">         
+        <a class="navbar-brand" href="index.html">Home</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse navbar-ex2-collapse">
+        <ul class="nav navbar-nav">
+          <li ><a href="Overview.html">Overview</a></li>
+          
+                                      
+        </ul>
+       
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+
+  </div>
+
+  <div id="MainPage" class="container">
 
     <div class="jumbotron ">
-      <h2 id="month">Spending Overview for month :</h2>
+      <h2 id="month">Spending Overview For Perion Of :</h2>
       <br>
       <div class="row">
           <div  class="col-sm-6 col-lg-6"  >
@@ -78,7 +76,7 @@
 
          <div class="col-sm-6 col-lg-6"  >
             <ul class="breadcrumb">
-                <li><h3 id="income" >Balance:</h3></li> 
+                <li><h3 class="space" id="balance" >Balance:</h3></li> 
                 <li  > <h3  id="balance"></h3> </li>
                </ul>
          </div>
@@ -105,19 +103,21 @@
              -->
           </tbody>
         </table>
-
-        <input type="text" id="NewCategory">
-        <button onclick="AddNewExpenseCategory()">Add New Category</button>
-
-        <h3>type amount  choose category</h2>
+               
+        <h3>Type the amount and choose category</h2>
         <input id="amount"  type="number">
-        <div class="btn-group">
-          <select id="select" class="bold">
+        <div class="btn-group ">
+          <select id="select" class="form-control bold">
             <!-- <option value="volvo">Food</option> -->
           </select>           
-          </div>
-          <button class="bold" onclick="AddExpense()"> Add expense</button>
+        </div>
+        <button class="bold btn btn-info" onclick="AddExpense()"> Add expense</button>
       
+        <br>
+        <br>
+        <h4>You can add new category here</h4>
+        <input type="text" id="NewCategory">        
+        <button class="btn btn-info" onclick="AddNewExpenseCategory()">Add New Category</button>
 
       </div>
     </div>

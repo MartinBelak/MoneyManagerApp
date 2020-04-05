@@ -5,6 +5,18 @@
     Author URL: https://bootstrapmade.com
 */
 
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+.center{
+  text-align: center;
+}
+.hidearrows{
+  -webkit-appearance: none;
+  margin: 0;
+}
 .space{
   display: inline-flex;
 }
@@ -15,7 +27,8 @@
 }
 
 .border{
- margin:5px;
+  padding: 10px;
+  margin:5px;
   border-style: solid;
   border-color: #009688;
   

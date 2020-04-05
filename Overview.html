@@ -35,10 +35,9 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex2-collapse">
           <ul class="nav navbar-nav">
-            <li ><a href="Overview.html">Monthly Overview</a></li>
-            <li><a href="#">Categories</a></li>
-            <button onclick="PopulateLocalStorage()">Create Test Months</button>
-            <button onclick="ClearLocalStorage()">Delete All Months</button>
+            <li ><a href="Overview.html">Overview</a></li>
+            
+            
            
           
           </ul>
@@ -53,18 +52,24 @@
 
 <body onload="Overview()">
 
-  
-  <div class="col-sm-12 col-lg-12">
-    <h3 id="TotalBalance" >Total Balance: </h3>
-  </div>
 
   <div class="col-sm-12 col-lg-12">
-    <div class="row">
+    <div id="Heading" class="row">
+       <h3 class="space" id="TotalBalance" >Total Savings:  </h3>
        <h3> Select Month </h3>
        <div id="AllMonths">
          
-           <!-- <div class="col-sm-3  text-center  "><div class="border"><div>Month Name</div> <div>Income:12000</div> <div>Outcome:8000</div> <div>Balance:4000</div> <button onclick="SelectMonth()" id="item.id">select month</button> <button onclick="SelectMonth()" id="item.id">select month</button></div></div>  -->
-           <!-- <div class="col-sm-2   text-center  "><div class="border">Month Name <br> Income:12000<br> Outcome:8000<br> <button onclick="SelectMonth()" id="item.id">select month</button></div></div> -->
+           <!-- <div class="col-sm-3  text-center  ">
+             <div class="border">
+               <div class="bold">Month Name</div> 
+               <div class="space">Income:<div class="green"> 12000</div></div>
+               <br>
+                <div class="space">Outcome:<div class="red">8000</div></div> 
+                <div>Balance:4000</div> 
+                <button class="btn btn-success" onclick="SelectMonth()" id="item.id">Select Month</button> 
+                <button class="btn btn-danger" onclick="SelectMonth()" id="item.id">Remove month</button>
+            </div>
+            </div>  -->
        </div>
   </div>
   </div>
@@ -76,14 +81,17 @@
   <br>
   <br>
 
-<div class="container">
-  
-      <div class="row">
+<div class="container border">
+    <div class="center bold">
+      <h3 >Add New Month here</h3>
+    </div>
+    <div class="row">
   
     
-    <div class="col-sm-4 col-lg-4">Month Name<br><input id="Name"></div>
-    <div class="col-sm-4 col-lg-4">Income<br><input id="Income" type="number"></div>
-    <div class="col-sm-4 col-lg-4" ><br><button onclick="AddMonth()">AddMonth</button></div>
+    <div class="col-sm-4 col-lg-4 bold">Month Name<br><input id="Name"></div>
+    <div class="col-sm-4 col-lg-4 bold">Income<br><input id="Income" type="number"></div>
+    <div class="col-sm-4 col-lg-4 bold" ><br><button class="btn btn-lg btn-default" onclick="AddMonth()">AddMonth</button></div>
+    
   </div>
 </div>
 
