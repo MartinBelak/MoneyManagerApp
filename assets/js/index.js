@@ -188,7 +188,7 @@ function Overview() {
 
 }
 
-function MainIndex(){     
+function MainIndex(){
     var SelectedMonth = JSON.parse(localStorage.getItem('SelectedMonth'));  
     if(SelectedMonth==undefined){ 
         //if no month is selected show message with instructions       
@@ -235,8 +235,13 @@ function MainIndex(){
         }
 
     
-        function ShowExpenses(){      
+        function ShowExpenses(){     
+            
             var expenses = SelectedMonth.expenses;  
+            console.log(expenses);
+            if(Object.keys(expenses).length===0&& expenses.constructor===Object){
+              document.getElementById('ExpensesDiv').innerHTML="";
+            }
             var ElementToAppend ="";     
             for (var key in expenses){
                 var Expense = parseInt(expenses[key],10);
