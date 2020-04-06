@@ -146,17 +146,14 @@ function DeleteCategory(elem){
 }
 
 //Main functions
-function Overview() {
-    var months = JSON.parse(localStorage.getItem('StoredMonths'));
-    console.log(months)
+function Overview() {   
+    var months = JSON.parse(localStorage.getItem('StoredMonths'));   
     var TotalBalance = 0;
-    
-    if(months.length==0){
-        document.getElementById('Heading').innerHTML=0;
+   
+    if(months==null||months.length==0){
+        document.getElementById('Heading').innerHTML="";
     }
     else{
-
-    
 
         months.forEach(DisplayMonths);
         GetTotalBalance();
@@ -176,7 +173,7 @@ function Overview() {
 
         function GetTotalBalance(){
             var newElement = document.createElement('div');
-            if(TotalBalance>=0){
+            if(TotalBalance>=0||TotalBalance==null){
                 newElement.className='green';
             }
             else{
@@ -193,18 +190,17 @@ function Overview() {
 
 function MainIndex(){     
     var SelectedMonth = JSON.parse(localStorage.getItem('SelectedMonth'));  
-    if(SelectedMonth==undefined){        
+    if(SelectedMonth==undefined){ 
+        //if no month is selected show message with instructions       
         document.getElementById('MainPage').innerHTML="";       
         var newElement = document.createElement('div');
         newElement.className='jumbotron';
         newElement.innerHTML='<h2>Start by Selecting or Creating new Month in Overview Page</h2>'
         document.getElementById('MainPage').appendChild(newElement);
         
-
     }
     else{
-
-    
+   
         var income = SelectedMonth.income;
         var outcome = SelectedMonth.outcome
         var balance = income - outcome;
@@ -244,7 +240,7 @@ function MainIndex(){
             var ElementToAppend ="";     
             for (var key in expenses){
                 var Expense = parseInt(expenses[key],10);
-            
+                //if the expense holds value render delete value button, render delete category otherwise
                 if(Expense>0){
                     ElementToAppend= '<td> ' + key + ': ' +expenses[key] + ' <button class="btn btn-warning btn-sm" id="'+key+'" onclick="DeleteExpense(this)" >Delete Expense</button> </td>'
                 }
